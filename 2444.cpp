@@ -6,7 +6,6 @@
 
 long long	count( std::vector<int> &nums, int minK, int maxK, size_t i )
 {
-	(void) minK; (void) maxK;
 	long long			result = 0;
 	int					start = 1;
 	std::vector<int>	temp;
