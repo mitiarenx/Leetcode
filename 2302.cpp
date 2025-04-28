@@ -9,8 +9,8 @@ long long	countSubarrays( std::vector<int> &nums, long long k )
 
 	for (size_t i = 0; i < nums.size(); i++)
 	{
-		if (nums[i] )
 	}
+	return result;
 }
 
 int	main()
