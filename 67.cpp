@@ -6,34 +6,37 @@
 
 std::string	addBinary( std::string a, std::string b )
 {
-	int			sa, sb, retenu;
-	std::string	result;
+	int			retenu = 0;
+	std::string	min, max, result;
 
-	sa = a.size();
-	sb = b.size();
-	if (sa < sb)
-		addBinary(b, a);
-	retenu = 0;
-	for (int i = sb - 1; i >= 0; i--)
+	(a.size() >= b.size()) ? (max = a, min = b) : (max = b, min = a);
+	for (int i = min.size() - 1, j = max.size() - 1; i >= 0; i--, j--)
 	{
-		int	sum = a[i] + b[i] - 2 * 48 + retenu;
+		int sum = (min[i] - '0') + (max[j] - '0') + retenu;
 		if (sum >= 2)
 			retenu = 1;
-		else
+		if (sum < 2)
 			retenu = 0;
-		std::cout << (sum % 2) << std::endl;
-		a[i] = (sum % 2) + 48;
+		result.insert(result.begin(), (sum % 2) + '0');
 	}
-	result = a;
+	for (int i = max.size() - min.size() - 1; i >= 0; i--)
+	{
+		int	sum = (max[i] - '0') + retenu;
+		if (sum >= 2)
+			retenu = 1;
+		if (sum < 2)
+			retenu = 0;
+		result.insert(result.begin(), (sum % 2) + '0');
+	}
 	if (retenu)
-		result.insert(result.begin() , '1');
+		result.insert(result.begin(), '1');
 	return result;
 }
 
 int	main()
 {
-	std::string	first = "11";
-	std::string	second = "1";
+	std::string	first = "100";
+	std::string	second = "110010";
 
 	std::cout << std::endl << "=================== RESULT ===================" << std::endl;
 	std::cout << "RESULT = " << addBinary(first, second) << std::endl;
